@@ -1,5 +1,5 @@
-def agregar_tarea(tareas, tarea, fecha_limite, prioridad):
-    nueva_tarea = {"Tarea": tarea, "Fecha límite": fecha_limite, "Prioridad": prioridad}
+def agregar_tarea(tareas, tarea, fecha_limite, prioridad, completada = False):
+    nueva_tarea = {"Tarea": tarea, "Fecha límite": fecha_limite, "Prioridad": prioridad, "Completada": completada}
     tareas.append(nueva_tarea)
     print("Tarea agregada exitosamente.")
 
@@ -11,6 +11,14 @@ def mostrar_tareas(tareas):
             print(f"\nTarea {i}:")
             for clave, valor in tarea.items():
                 print(f"{clave}: {valor}")
+
+def marcar_completada(tareas):
+    i = input("Ingrese el índice de la tarea completada: ")
+    if 1 >= 0 and i < len(tareas):
+        tareas[i - 1]["Completada"] = True
+        print("¡La tarea ha sido completada exitosamente!")
+    else:
+        print("El indice de la tarea no se encuentra almacenado.")
 
 if __name__ == "__main__":
     lista_tareas = []
@@ -32,6 +40,9 @@ if __name__ == "__main__":
             mostrar_tareas(lista_tareas)
 
         elif opcion == "3":
+            marcar_completada(lista_tareas)
+
+        elif opcion == "4":
             break
 
         else:
