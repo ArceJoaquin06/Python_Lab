@@ -7,13 +7,29 @@ def mostrar_tareas(tareas):
     if not tareas:
         print("No hay tareas pendientes.")
     else:
-        for i, tarea in enumerate(tareas, 1):
-            print(f"\nTarea {i}:")
-            for clave, valor in tarea.items():
-                print(f"{clave}: {valor}")
+        print("1. Tareas Completadas")
+        print("2. Tareas Incompletas")
+
+        option = input("Seleccione una opción: ")
+
+        if  option == "1":
+            for i, tarea in enumerate(tareas, 1):
+                if tarea["Completada"] == True:
+                    print(f"\nTarea {i}:")
+                    for clave, valor in tarea.items():
+                        print(f"{clave}: {valor}")
+        elif option == "2":
+            for i, tarea in enumerate(tareas, 1):
+                if tarea["Completada"] == False:
+                    print(f"\nTarea {i}:")
+                    for clave, valor in tarea.items():
+                        print(f"{clave}: {valor}")
+
+        else:
+            print("Opción no válida.")
 
 def marcar_completada(tareas):
-    i = input("Ingrese el índice de la tarea completada: ")
+    i = int(input("Ingrese el índice de la tarea completada: "))
     if 1 >= 0 and i < len(tareas):
         tareas[i - 1]["Completada"] = True
         print("¡La tarea ha sido completada exitosamente!")
@@ -26,7 +42,8 @@ if __name__ == "__main__":
     while True:
         print("\n1. Agregar tarea")
         print("2. Mostrar tareas")
-        print("3. Salir")
+        print("3. Marcar tareas completadas")
+        print("4. Salir")
 
         opcion = input("Seleccione una opción: ")
 
